@@ -23,11 +23,19 @@ ext {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:testcontainers'
+    // Spring Boot & OpenFeign
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+
+    // AWS SDK (SNS & SQS)
+    implementation("software.amazon.awssdk:sns:2.25.29")
+    implementation("software.amazon.awssdk:sqs:2.25.29")
+
+    // Testcontainers for JUnit & LocalStack
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.testcontainers:testcontainers:1.19.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.3")
+    testImplementation("org.testcontainers:localstack:1.19.3")
 }
 
 dependencyManagement {
@@ -36,12 +44,6 @@ dependencyManagement {
     }
 }
 
-kotlin {
-    compilerOptions {
-        freeCompilerArgs.addAll '-Xjsr305=strict'
-    }
-}
-
-tasks.named('test') {
+tasks.test {
     useJUnitPlatform()
 }

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: demo1
+product:
+  service:
+    url: http://localhost:9091
+aws:
+  region: us-east-1
+  credentials:
+    access-key: test
+    secret-key: test
+  localstack:
+    endpoint: http://localhost:4566
+  sns:
+    topic-arn: arn:aws:sns:us-east-1:000000000000:order-topic
